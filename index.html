@@ -1232,6 +1232,175 @@ body.en .roadmap-item { flex-direction:row; }
 .platform-paths li:last-child { border-bottom: none; }
 .platform-paths li::before { content: '▸'; color: var(--cyan); flex-shrink: 0; }
 
+
+/* ─── KILL CHAIN ─── */
+.kc-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.kc-step {
+  flex: 1;
+  min-width: 130px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.kc-step:hover .kc-box { filter: brightness(1.15); transform: translateY(-3px); }
+
+.kc-box {
+  padding: 1.1rem 0.75rem 1rem;
+  text-align: center;
+  transition: all 0.25s;
+  position: relative;
+  z-index: 1;
+  border-radius: 0;
+}
+
+.kc-step:first-child .kc-box { border-radius: 12px 0 0 12px; }
+body.en .kc-step:first-child .kc-box { border-radius: 12px 0 0 12px; }
+body:not(.en) .kc-step:first-child .kc-box { border-radius: 0 12px 12px 0; }
+body:not(.en) .kc-step:last-child .kc-box { border-radius: 12px 0 0 12px; }
+.kc-step:last-child .kc-box { border-radius: 0 12px 12px 0; }
+
+.kc-arrow {
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 28px solid transparent;
+  border-bottom: 28px solid transparent;
+  z-index: 2;
+}
+
+body:not(.en) .kc-arrow {
+  left: auto;
+  right: -1px;
+  border-left: none;
+}
+
+.kc-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.7;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.05em;
+}
+.kc-icon { font-size: 1.3rem; margin-bottom: 0.35rem; display: block; }
+.kc-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+.kc-title-ar { font-size: 0.72rem; opacity: 0.85; line-height: 1.3; }
+
+.kc-detail {
+  display: none;
+  margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+.kc-detail.active { display: block; }
+
+.kc-detail-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.kc-detail-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.kc-detail-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.kc-detail-header h3 { font-size: 1.1rem; font-weight: 800; }
+.kc-detail-header p { font-size: 0.82rem; color: var(--text2); margin-top: 0.2rem; line-height: 1.6; }
+
+.kc-detail-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+
+@media (max-width: 768px) {
+  .kc-detail-body { grid-template-columns: 1fr; }
+  .kc-flow { gap: 0; }
+  .kc-step { min-width: 90px; }
+  .kc-title { font-size: 0.65rem; }
+  .kc-title-ar { font-size: 0.6rem; }
+}
+
+.kc-col {
+  padding: 1.25rem 1.5rem;
+  border-left: 1px solid var(--border);
+}
+.kc-col:last-child { border-left: none; }
+body.en .kc-col { border-left: none; border-right: 1px solid var(--border); }
+body.en .kc-col:last-child { border-right: none; }
+
+.kc-col-title {
+  font-size: 0.68rem;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.kc-col ul { list-style: none; }
+.kc-col ul li {
+  font-size: 0.83rem;
+  color: var(--text2);
+  padding: 0.3rem 0;
+  display: flex;
+  gap: 0.4rem;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(26,45,74,0.4);
+}
+.kc-col ul li:last-child { border-bottom: none; }
+.kc-col ul li::before { content: '▸'; flex-shrink: 0; }
+
+.kc-mitre-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+.kc-mitre-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  color: var(--text3);
+}
+
+.kc-soc-response {
+  font-size: 0.83rem;
+  color: var(--text2);
+  padding: 0.3rem 0;
+  display: flex;
+  gap: 0.4rem;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(26,45,74,0.4);
+}
+.kc-soc-response:last-child { border-bottom: none; }
+
 </style>
 </head>
 <body>
@@ -1249,6 +1418,7 @@ body.en .roadmap-item { flex-direction:row; }
     <li><a href="#protocols" data-ar>البروتوكولات</a><a href="#protocols" data-en style="display:none">Protocols</a></li>
     <li><a href="#events" data-ar>أحداث ويندوز</a><a href="#events" data-en style="display:none">Win Events</a></li>
     <li><a href="#ir" data-ar>الاستجابة للحوادث</a><a href="#ir" data-en style="display:none">Incident Response</a></li>
+    <li><a href="#killchain" data-ar>Kill Chain</a><a href="#killchain" data-en style="display:none">Kill Chain</a></li>
     <li><a href="#mitre" data-ar>MITRE ATT&amp;CK</a><a href="#mitre" data-en>MITRE ATT&amp;CK</a></li>
     <li><a href="#certs" data-ar>الشهادات</a><a href="#certs" data-en style="display:none">Certifications</a></li>
     <li><a href="#triage" data-ar>خطوات التحليل</a><a href="#triage" data-en style="display:none">Triage</a></li>
@@ -1464,6 +1634,20 @@ body.en .roadmap-item { flex-direction:row; }
     <div class="ir-line"></div>
     <div id="ir-steps"></div>
   </div>
+</section>
+
+
+<!-- ════════════════════════════ KILL CHAIN ════════════════════════ -->
+<hr class="section-sep">
+<section class="section" id="killchain">
+  <div class="section-header">
+    <div class="section-tag">Lockheed Martin — Cyber Kill Chain®</div>
+    <h2 class="section-title" data-ar>سلسلة الهجوم السيبراني (Cyber Kill Chain)</h2>
+    <h2 class="section-title" data-en style="display:none">Cyber Kill Chain®</h2>
+    <p class="section-desc" data-ar>إطار Lockheed Martin الشهير لفهم مراحل الهجوم — اضغط على أي مرحلة لتفاصيلها وكيف يتصدى لها محلل SOC</p>
+    <p class="section-desc" data-en style="display:none">Lockheed Martin's famous framework for understanding attack stages — click any phase for details and SOC analyst countermeasures</p>
+  </div>
+  <div id="killchain-container"></div>
 </section>
 
 <!-- ════════════════════════════ MITRE ATT&CK ════════════════════════ -->
@@ -4362,12 +4546,220 @@ function renderLearning() {
   `).join('');
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// KILL CHAIN DATA
+// ═══════════════════════════════════════════════════════════
+const killChainSteps = [
+  {
+    num:'01', icon:'🔭',
+    color:'#6366f1', bg:'rgba(99,102,241,0.15)', border:'rgba(99,102,241,0.35)',
+    arrowColor:'rgba(99,102,241,0.15)',
+    titleEn:'Reconnaissance', titleAr:'الاستطلاع',
+    descAr:'جمع معلومات عن الهدف قبل الهجوم — المهاجم يبحث عن نقاط الضعف علنياً وسراً',
+    descEn:'Gathering target information before attack — attacker searches for weaknesses publicly and covertly',
+    attacksAr:['OSINT — LinkedIn, Shodan, Google Dorking','Email Harvesting — أسماء وعناوين الموظفين','Network Scanning — فحص المنافذ والخدمات','DNS Enumeration — استكشاف البنية التحتية','Job Postings Analysis — معرفة التقنيات المستخدمة'],
+    attacksEn:['OSINT — LinkedIn, Shodan, Google Dorking','Email Harvesting — employee names and addresses','Network Scanning — port and service discovery','DNS Enumeration — infrastructure mapping','Job Postings Analysis — identifying used technologies'],
+    socAr:['راقب سجلات DNS عن استعلامات zone transfer','فعّل Google Alerts لاسم المنظمة','راجع بصمة المنظمة الرقمية علنياً','تدريب الموظفين على عدم نشر معلومات حساسة'],
+    socEn:['Monitor DNS logs for zone transfer attempts','Enable Google Alerts for organization name','Review organization public digital footprint','Train employees not to share sensitive info'],
+    mitre:['TA0043','T1595','T1589','T1590','T1591'],
+  },
+  {
+    num:'02', icon:'⚔️',
+    color:'#8b5cf6', bg:'rgba(139,92,246,0.15)', border:'rgba(139,92,246,0.35)',
+    arrowColor:'rgba(139,92,246,0.15)',
+    titleEn:'Weaponization', titleAr:'التسليح',
+    descAr:'إنشاء أداة الهجوم — المهاجم يبني أو يعدّل البرمجية الضارة لاستغلال الثغرة المكتشفة',
+    descEn:'Creating the attack tool — attacker builds or modifies malware to exploit discovered vulnerability',
+    attacksAr:['بناء Malware مخصص أو تعديل موجود','تضمين Exploit في ملف Office أو PDF','إنشاء Payload مشفر لتفادي الـ AV','بناء C2 Infrastructure جاهز','إنشاء Phishing Kit كامل'],
+    attacksEn:['Build custom malware or modify existing','Embed exploit in Office file or PDF','Create encrypted payload to evade AV','Build ready C2 infrastructure','Create complete Phishing Kit'],
+    socAr:['لا يوجد رصد مباشر في هذه المرحلة','التركيز على تعزيز الدفاعات قبل الوصول','Threat Intel — تتبع TTPs المهاجمين','تحديث Signatures الـ AV/EDR بانتظام'],
+    socEn:['No direct detection at this phase','Focus on strengthening defenses before access','Threat Intel — track attacker TTPs','Regularly update AV/EDR signatures'],
+    mitre:['TA0042','T1587','T1588','T1608'],
+  },
+  {
+    num:'03', icon:'📨',
+    color:'#ec4899', bg:'rgba(236,72,153,0.15)', border:'rgba(236,72,153,0.35)',
+    arrowColor:'rgba(236,72,153,0.15)',
+    titleEn:'Delivery', titleAr:'التوصيل',
+    descAr:'إيصال السلاح للهدف — أكثر المراحل رصداً وإيقافاً إذا وُجدت ضوابط مناسبة',
+    descEn:'Delivering the weapon to target — most detectable and stoppable phase if proper controls exist',
+    attacksAr:['Phishing Email — أكثر الطرق شيوعاً (>90%)','Watering Hole — تلويث مواقع يزورها الهدف','USB Drop — وضع USB ملوثة في الموقع','Supply Chain — تلويث برنامج شرعي','Exploitation of Public-Facing Apps'],
+    attacksEn:['Phishing Email — most common (>90%)','Watering Hole — poisoning target-visited sites','USB Drop — placing infected USB on premises','Supply Chain — poisoning legitimate software','Exploitation of Public-Facing Apps'],
+    socAr:['Email Gateway — فلترة المرفقات والروابط','SPF/DKIM/DMARC — التحقق من مصدر البريد','Web Proxy — فلترة الـ URLs الضارة','User Awareness — تدريب ضد Phishing','USB Policy — تعطيل Autorun'],
+    socEn:['Email Gateway — filter attachments and links','SPF/DKIM/DMARC — verify email source','Web Proxy — filter malicious URLs','User Awareness — anti-phishing training','USB Policy — disable Autorun'],
+    mitre:['TA0001','T1566','T1195','T1190','T1091'],
+  },
+  {
+    num:'04', icon:'💥',
+    color:'#f43f5e', bg:'rgba(244,63,94,0.15)', border:'rgba(244,63,94,0.35)',
+    arrowColor:'rgba(244,63,94,0.15)',
+    titleEn:'Exploitation', titleAr:'الاستغلال',
+    descAr:'تفعيل الثغرة — تنفيذ الكود الضار باستغلال نقطة ضعف في النظام أو المستخدم',
+    descEn:'Triggering the vulnerability — executing malicious code by exploiting system or user weakness',
+    attacksAr:['استغلال ثغرة في البرنامج (CVE)','Macro Execution — تنفيذ ماكرو Office','Browser Exploit — ثغرة في المتصفح','Zero-Day Exploitation','Social Engineering — خداع المستخدم للتنفيذ'],
+    attacksEn:['Software vulnerability exploitation (CVE)','Macro Execution — Office macro execution','Browser Exploit — browser vulnerability','Zero-Day Exploitation','Social Engineering — tricking user to execute'],
+    socAr:['EDR — كشف تنفيذ الكود المشبوه','Patch Management — تحديث الأنظمة فوراً','Application Whitelisting','Disable Office Macros','Event 4688 — مراقبة العمليات الجديدة'],
+    socEn:['EDR — detect suspicious code execution','Patch Management — update systems immediately','Application Whitelisting','Disable Office Macros','Event 4688 — monitor new processes'],
+    mitre:['TA0002','T1203','T1059','T1204','T1566.001'],
+  },
+  {
+    num:'05', icon:'🔧',
+    color:'#f97316', bg:'rgba(249,115,22,0.15)', border:'rgba(249,115,22,0.35)',
+    arrowColor:'rgba(249,115,22,0.15)',
+    titleEn:'Installation', titleAr:'التثبيت',
+    descAr:'ضمان البقاء — المهاجم يثبت Backdoor أو RAT ليضمن الوصول حتى بعد إعادة التشغيل',
+    descEn:'Ensuring persistence — attacker installs Backdoor or RAT to maintain access even after reboot',
+    attacksAr:['Registry Run Keys — Persistence بالـ Registry','Scheduled Tasks — مهام مجدولة ضارة','Service Installation — خدمة ضارة جديدة','DLL Hijacking — استبدال DLL شرعية','Rootkit Installation — إخفاء عميق'],
+    attacksEn:['Registry Run Keys — Registry persistence','Scheduled Tasks — malicious scheduled tasks','Service Installation — new malicious service','DLL Hijacking — replacing legitimate DLL','Rootkit Installation — deep concealment'],
+    socAr:['Event 4698 — Scheduled Task جديد','Event 7045 — خدمة جديدة','Event 4657 — تغيير Registry','Autoruns Monitoring — مراقبة بدء التشغيل','EDR Behavioral Detection'],
+    socEn:['Event 4698 — new Scheduled Task','Event 7045 — new service','Event 4657 — Registry change','Autoruns Monitoring','EDR Behavioral Detection'],
+    mitre:['TA0003','T1053','T1543','T1547','T1574'],
+  },
+  {
+    num:'06', icon:'📡',
+    color:'#10b981', bg:'rgba(16,185,129,0.15)', border:'rgba(16,185,129,0.35)',
+    arrowColor:'rgba(16,185,129,0.15)',
+    titleEn:'Command & Control', titleAr:'التحكم والسيطرة',
+    descAr:'التواصل مع الضحية — المهاجم يتحكم في الجهاز المصاب عن بعد عبر قناة مشفرة',
+    descEn:'Communicating with victim — attacker remotely controls infected machine via encrypted channel',
+    attacksAr:['HTTP/HTTPS C2 — Beaconing منتظم','DNS Tunneling — تخفي الأوامر في DNS','ICMP Tunneling — استخدام Ping للـ C2','Social Media C2 — Twitter/GitHub كـ C2','Domain Fronting — تخفي الـ C2 خلف CDN'],
+    attacksEn:['HTTP/HTTPS C2 — regular Beaconing','DNS Tunneling — hiding commands in DNS','ICMP Tunneling — using Ping for C2','Social Media C2 — Twitter/GitHub as C2','Domain Fronting — hiding C2 behind CDN'],
+    socAr:['DNS Logs — رصد Subdomains طويلة وغريبة','Firewall Logs — كشف Beaconing المنتظم','JA3 Fingerprinting — تحديد أدوات الـ C2','Threat Intel — Block قوائم الـ C2 المعروفة','Event 5156 — مراقبة الاتصالات الخارجية'],
+    socEn:['DNS Logs — monitor long unusual subdomains','Firewall Logs — detect regular Beaconing','JA3 Fingerprinting — identify C2 tools','Threat Intel — block known C2 lists','Event 5156 — monitor outbound connections'],
+    mitre:['TA0011','T1071','T1095','T1568','T1090'],
+  },
+  {
+    num:'07', icon:'🎯',
+    color:'#ef4444', bg:'rgba(239,68,68,0.15)', border:'rgba(239,68,68,0.35)',
+    arrowColor:'rgba(239,68,68,0.15)',
+    titleEn:'Actions on Objectives', titleAr:'تحقيق الأهداف',
+    descAr:'تنفيذ الهدف النهائي — سرقة بيانات، تشفير ملفات، تخريب، أو فتح باب خلفي دائم',
+    descEn:'Executing the final goal — data theft, file encryption, sabotage, or establishing permanent backdoor',
+    attacksAr:['Data Exfiltration — تسريب البيانات خارجياً','Ransomware — تشفير الملفات وطلب فدية','Lateral Movement — الانتشار داخل الشبكة','Privilege Escalation — رفع الصلاحيات','Sabotage — تخريب الأنظمة أو البيانات'],
+    attacksEn:['Data Exfiltration — stealing data externally','Ransomware — encrypting files and demanding ransom','Lateral Movement — spreading across network','Privilege Escalation — gaining higher privileges','Sabotage — destroying systems or data'],
+    socAr:['DLP — كشف نقل البيانات الكبيرة','Event 4663/4660 — وصول وحذف الملفات','Honeypot Alerts — اكتشاف Lateral Movement','UEBA — سلوك غير طبيعي للمستخدمين','Incident Response — تفعيل خطة الاستجابة فوراً'],
+    socEn:['DLP — detect large data transfers','Event 4663/4660 — file access and deletion','Honeypot Alerts — detect Lateral Movement','UEBA — abnormal user behavior','Incident Response — activate response plan immediately'],
+    mitre:['TA0010','TA0008','TA0040','T1041','T1486'],
+  },
+];
+
+// ═══════════════════════════════════════════════════════════
+// RENDER KILL CHAIN
+// ═══════════════════════════════════════════════════════════
+function renderKillChain() {
+  const container = document.getElementById('killchain-container');
+  if (!container) return;
+
+  // Flow diagram
+  const flowHtml = `
+    <div class="kc-flow">
+      ${killChainSteps.map((s, i) => `
+        <div class="kc-step" onclick="showKCDetail(${i})">
+          ${i > 0 ? `<div class="kc-arrow" style="border-left:14px solid ${s.bg};"></div>` : ''}
+          <div class="kc-box" style="background:${s.bg};border-top:3px solid ${s.color};">
+            <div class="kc-num" style="color:${s.color};">${s.num}</div>
+            <span class="kc-icon">${s.icon}</span>
+            <div class="kc-title" style="color:${s.color};">${s.titleEn}</div>
+            <div class="kc-title-ar" style="color:${s.color};">
+              <span class="ar-txt">${s.titleAr}</span>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <p style="text-align:center;font-size:0.75rem;color:var(--text3);margin-top:0.5rem;font-family:'IBM Plex Mono',monospace;">
+      <span class="ar-txt">← اتجاه الهجوم</span>
+      <span class="en-txt" style="display:none">Attack Direction →</span>
+    </p>
+  `;
+
+  // Detail panels
+  const detailsHtml = killChainSteps.map((s, i) => `
+    <div class="kc-detail" id="kc-detail-${i}">
+      <div class="kc-detail-card" style="border-top:3px solid ${s.color};">
+        <div class="kc-detail-header" style="background:${s.bg}20;">
+          <div class="kc-detail-icon" style="background:${s.bg};">${s.icon}</div>
+          <div>
+            <h3 style="color:${s.color};">
+              ${s.num}. ${s.titleEn}
+              <span class="ar-txt"> — ${s.titleAr}</span>
+            </h3>
+            <p>
+              <span class="ar-txt">${s.descAr}</span>
+              <span class="en-txt" style="display:none">${s.descEn}</span>
+            </p>
+          </div>
+        </div>
+        <div class="kc-detail-body">
+          <div class="kc-col">
+            <div class="kc-col-title" style="color:${s.color};">
+              <span class="ar-txt">⚔️ تقنيات الهجوم</span>
+              <span class="en-txt" style="display:none">⚔️ Attack Techniques</span>
+            </div>
+            <ul>
+              ${s.attacksAr.map((a, j) => `
+                <li>
+                  <span class="ar-txt">${a}</span>
+                  <span class="en-txt" style="display:none">${s.attacksEn[j]}</span>
+                </li>`).join('')}
+            </ul>
+          </div>
+          <div class="kc-col">
+            <div class="kc-col-title" style="color:var(--green);">
+              <span class="ar-txt">🛡️ دور محلل SOC</span>
+              <span class="en-txt" style="display:none">🛡️ SOC Analyst Role</span>
+            </div>
+            <ul>
+              ${s.socAr.map((r, j) => `
+                <li style="--bullet-color:var(--green);">
+                  <span style="color:var(--green);">▸</span>
+                  <span class="ar-txt">${r}</span>
+                  <span class="en-txt" style="display:none">${s.socEn[j]}</span>
+                </li>`).join('')}
+            </ul>
+          </div>
+          <div class="kc-col">
+            <div class="kc-col-title" style="color:var(--amber);">
+              <span class="ar-txt">🎯 MITRE ATT&CK</span>
+              <span class="en-txt" style="display:none">🎯 MITRE ATT&CK</span>
+            </div>
+            <div class="kc-mitre-tags">
+              ${s.mitre.map(m => `<span class="kc-mitre-tag">${m}</span>`).join('')}
+            </div>
+            <p style="font-size:0.78rem;color:var(--text3);margin-top:0.75rem;line-height:1.6;">
+              <span class="ar-txt">راجع قسم MITRE ATT&CK في الدليل لتفاصيل كل تكتيك</span>
+              <span class="en-txt" style="display:none">See the MITRE ATT&CK section in this guide for full tactic details</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  container.innerHTML = flowHtml + detailsHtml;
+}
+
+function showKCDetail(idx) {
+  // Hide all
+  document.querySelectorAll('.kc-detail').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.kc-step').forEach(s => s.style.opacity = '0.6');
+  // Show selected
+  const detail = document.getElementById('kc-detail-' + idx);
+  if (detail) {
+    detail.classList.add('active');
+    detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  document.querySelectorAll('.kc-step')[idx].style.opacity = '1';
+}
+
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═════
 renderProtocols();
 renderEvents();
 renderIR();
+renderKillChain();
 renderMITRE();
 renderTriage();
 renderLogs();
